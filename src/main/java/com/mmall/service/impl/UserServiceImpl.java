@@ -180,12 +180,12 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccess(user);
     }
 
-    //backend
+    // backend 后台管理系统判断用户是否是管理员登录
 
     /**
      * 校验是否是管理员
      *
-     * @param user
+     * @param user user
      * @return
      */
     public ServerResponse checkAdminRole(User user) {
