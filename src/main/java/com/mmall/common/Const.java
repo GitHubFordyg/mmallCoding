@@ -5,7 +5,7 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 
 /**
- * Created by geely
+ *
  */
 public class Const {
 
@@ -58,7 +58,6 @@ public class Const {
         ORDER_SUCCESS(50, "订单完成"),
         ORDER_CLOSE(60, "订单关闭");
 
-
         OrderStatusEnum(int code, String value) {
             this.code = code;
             this.value = value;
@@ -86,9 +85,8 @@ public class Const {
     }
 
     public interface AlipayCallback {
-        String TRADE_STATUS_WAIT_BUYER_PAY = "WAIT_BUYER_PAY";
-        String TRADE_STATUS_TRADE_SUCCESS = "TRADE_SUCCESS";
-
+        String TRADE_STATUS_WAIT_BUYER_PAY = "WAIT_BUYER_PAY";  // 交易创建，等待买家付款
+        String TRADE_STATUS_TRADE_SUCCESS = "TRADE_SUCCESS";   // 交易支付成功
         String RESPONSE_SUCCESS = "success";
         String RESPONSE_FAILED = "failed";
     }
@@ -140,7 +138,5 @@ public class Const {
             }
             throw new RuntimeException("么有找到对应的枚举");
         }
-
     }
-
 }
