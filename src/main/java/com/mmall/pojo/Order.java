@@ -16,15 +16,15 @@ public class Order {
 
     private Integer paymentType;
 
-    private Integer postage;
+    private Integer postage;  // 邮费
 
     private Integer status;
 
     private Date paymentTime;
 
-    private Date sendTime;
+    private Date sendTime;  // 发货时间
 
-    private Date endTime;
+    private Date endTime;  // 结束时间
 
     private Date closeTime;
 
