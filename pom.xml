@@ -19,7 +19,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-servlet-api</artifactId>
@@ -55,7 +54,6 @@
             <artifactId>spring-test</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -93,7 +91,6 @@
             <!--<scope>runtime</scope>-->
         </dependency>
 
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -119,20 +116,17 @@
             <version>20.0</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
 
-
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>3.2.1</version>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
@@ -147,14 +141,12 @@
             <version>2.3</version>
         </dependency>
 
-
         <!-- id加密解密 -->
         <dependency>
             <groupId>org.hashids</groupId>
             <artifactId>hashids</artifactId>
             <version>1.0.1</version>
         </dependency>
-
 
         <!-- ftpclient -->
         <dependency>
@@ -164,8 +156,6 @@
         </dependency>
 
         <!-- file upload -->
-
-        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
@@ -177,7 +167,6 @@
             <artifactId>commons-io</artifactId>
             <version>2.0.1</version>
         </dependency>
-
 
         <!-- mybatis pager -->
         <dependency>
@@ -235,10 +224,11 @@
             <version>1.3</version>
         </dependency>
 
+        <!--  二期新增jar包 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>2.9.0</version>
+            <version>2.6.0</version>
         </dependency>
 
         <dependency>
@@ -246,7 +236,6 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -261,7 +250,6 @@
                     <overwrite>true</overwrite>
                 </configuration>
             </plugin>
-
             <!-- geelynote maven的核心插件之-complier插件默认只支持编译Java 1.4，因此需要加上支持高版本jre的配置，在pom.xml里面加上 增加编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -277,5 +265,45 @@
             </plugin>
         </plugins>
 
+        <!--  配置maven环境隔离 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources.${deploy.type}</directory>
+                <excludes>
+                    <!--  排除掉所有的jsp文件 -->
+                    <exclude>*.jsp</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <!--  默认使用dev开发环境 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <deploy.type>dev</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>beta</id>
+            <properties>
+                <!--  测试环境 -->
+                <deploy.type>beta</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!--  线上环境 -->
+                <deploy.type>prod</deploy.type>
+            </properties>
+        </profile>
+    </profiles>
 </project>
