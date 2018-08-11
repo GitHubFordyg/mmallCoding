@@ -40,4 +40,18 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <!-- 定义在这里的，所有的都会拦截-->
+        <mvc:interceptor>
+            <!--manage/a.do  /manage/*-->
+            <!--manage/b.do  /manage/*-->
+            <!--manage/product/save.do /manage/**-->
+            <!--manage/order/detail.do /manage/**-->
+            <mvc:mapping path="/manage/**"/>
+            <!--排除login.do，不用拦截登录方法-->
+            <!--<mvc:exclude-mapping path="/manage/user/login.do"/>-->
+            <bean class="com.mmall.controller.common.interceptor.AuthorityInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
