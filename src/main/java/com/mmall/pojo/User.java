@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter  // 只生成Getter方法
 @Setter  // 只生成Setter
 @NoArgsConstructor  // 无参构造器
 @AllArgsConstructor  // 全参构造器
-public class User {
+public class User implements Serializable {
 
     private Integer id;
 
