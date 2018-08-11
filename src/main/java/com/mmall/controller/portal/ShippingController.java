@@ -32,6 +32,7 @@ public class ShippingController {
 
     @RequestMapping("add.do")
     @ResponseBody
+    // 添加收货地址
     public ServerResponse add(HttpServletRequest httpServletRequest, Shipping shipping) {
         String loginToken = CookieUtil.readLoginToken(httpServletRequest);
         if (StringUtils.isEmpty(loginToken)) {
